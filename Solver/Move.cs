@@ -11,6 +11,7 @@ namespace Solver
     {
         public enum MoveDirectionEnum { Left, Right, Up};
 
+
         public Position Position { get; private set; }
         public MoveDirectionEnum MoveDirection { get; private set; }
 
