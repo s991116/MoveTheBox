@@ -9,6 +9,7 @@ namespace MoveTheBox
     public class Board
     {
         private List<Box> boxes;
+        public List<Box> Boxes { get { return boxes; } }
 
         private Board() { }
 
@@ -23,6 +24,11 @@ namespace MoveTheBox
             {
                 boxes = b
             };
+        }
+
+        public void AddBoxes(List<Box> boxes)
+        {
+            boxes.AddRange(boxes);
         }
 
         public Board Clone()
@@ -46,6 +52,33 @@ namespace MoveTheBox
 
             return boxPositions;
         }
+
+        public void AddBox(Box box)
+        {
+            if(!boxes.Exists(x => x.Position.Equals(box.Position)))
+            {
+                boxes.Add(box);
+            }
+        }
+
+        public object Serialize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            boxes.Clear();
+        }
+
+        public void RemoveBox(Box box)
+        {
+            if (boxes.Exists(x => x.Position.Equals(box.Position)))
+            {
+                boxes.Remove(box);
+            }
+        }
+
 
         public bool IsEmpty()
         {
