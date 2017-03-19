@@ -5,22 +5,15 @@
         public int Kind { private set; get; }
         public Position Position { private set; get; }
 
-        private Box()
-        {
-        }
-
         public Box Clone()
         {
-            return Box.Create(Kind, Position.Clone());
+            return new Box(Kind, Position.Clone());
         }
 
-        public static Box Create(int kind, Position position)
+        public Box(int kind, Position position)
         {
-            return new Box()
-            {
-                Kind = kind,
-                Position = position
-            };
+            Kind = kind;
+            Position = position;
         }
 
         public void MoveLeft()

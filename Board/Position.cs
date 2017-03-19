@@ -11,61 +11,30 @@
             Y = y;
         }
 
-        private Position()
-        {
-
-        }
-
         public Position Clone()
         {
-            return Position.Create(X, Y);
-        }
-
-        public static Position Create(int x, int y)
-        {
-            return new Position
-            {
-                X = x,
-                Y = y
-            };
+            return new Position(X, Y);
         }
 
         public static Position CreateLeft(Position p)
         {
-            return new Position
-            {
-                X = p.X-1,
-                Y = p.Y
-            };
+            return new Position(p.X - 1, p.Y);
         }
 
         public static Position CreateRight(Position p)
         {
-            return new Position
-            {
-                X = p.X + 1,
-                Y = p.Y
-            };
+            return new Position(p.X + 1, p.Y);
         }
 
         public static Position CreateDown(Position p)
         {
-            return new Position
-            {
-                X = p.X,
-                Y = p.Y-1
-            };
+            return new Position(p.X, p.Y - 1);
         }
 
         public static Position CreateTop(Position p)
         {
-            return new Position
-            {
-                X = p.X,
-                Y = p.Y + 1
-            };
+            return new Position(p.X, p.Y + 1);
         }
-
 
         public override bool Equals(object obj)
         {

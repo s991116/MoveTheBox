@@ -11,24 +11,19 @@ namespace MoveTheBox
         private List<Box> boxes;
         public List<Box> Boxes { get { return boxes; } }
 
-        private Board() { }
-
-        public static Board Create(Box[] boxes)
+        public Board(Box[] boxes)
         {
-            return Board.Create(boxes.ToList());
+            this.boxes =  boxes.ToList();
         }
 
-        public static Board Create(List<Box> b)
+        public Board(List<Box> boxes)
         {
-            return new Board()
-            {
-                boxes = b
-            };
+            this.boxes = boxes;
         }
 
         public void AddBoxes(List<Box> boxes)
         {
-            boxes.AddRange(boxes);
+            this.boxes.AddRange(boxes);
         }
 
         public Board Clone()
@@ -38,7 +33,7 @@ namespace MoveTheBox
             {
                 newBoxes.Add(box.Clone());
             }
-            return Board.Create(newBoxes);
+            return new Board(newBoxes);
         }
 
         public List<Position> GetCurrentBoxPositions()
@@ -47,7 +42,7 @@ namespace MoveTheBox
 
             foreach(var box in boxes)
             {
-                boxPositions.Add(Position.Create(box.Position.X, box.Position.Y));
+                boxPositions.Add(new Position(box.Position.X, box.Position.Y));
             }
 
             return boxPositions;

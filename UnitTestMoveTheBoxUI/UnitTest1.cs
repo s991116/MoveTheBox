@@ -11,11 +11,11 @@ namespace UnitTestMoveTheBoxUI
         public void TestMethod1()
         {
             var target = new BoardImage();
-            var board = Board.Create(new Box[] {
-                Box.Create(1, Position.Create(2, 3)),
-                Box.Create(2, Position.Create(3, 3)),
-                Box.Create(3, Position.Create(2, 2)),
-                Box.Create(4, Position.Create(2, 1))
+            var board = new Board(new Box[] {
+                new Box(1, new Position(2, 3)),
+                new Box(2, new Position(3, 3)),
+                new Box(3, new Position(2, 2)),
+                new Box(4, new Position(2, 1))
             });
 
             var image = target.CreateBitmap(board);

@@ -23,7 +23,7 @@ namespace MoveTheBoxUI
         public Form1()
         {
             InitializeComponent();
-            board = Board.Create(new Box[] { });
+            board = new Board(new Box[] { });
             boardEditor = new BoardEditor(board);
             solver = new Solver.Solve();
             maxMoves = 2;
@@ -35,9 +35,21 @@ namespace MoveTheBoxUI
         {
             maxMoves = Convert.ToInt32(numericUpDown2.Value);
             var solution = solver.FindSolution(boardEditor.Board, maxMoves);
-            textBoxSolution.Text = Newtonsoft.Json.JsonConvert.SerializeObject(solution, Newtonsoft.Json.Formatting.Indented);
+            textBoxSolution.Text = PrettyPrintSolution(solution);
         }
-        
+
+        private string PrettyPrintSolution(Solution solution)
+        {
+            if (!solution.Found)
+                return "No Solution found.";
+
+            StringBuilder sb = new StringBuilder();
+            foreach(var step in solution.Moves)
+            {
+                sb.AppendLine("Move box at x: "+step.Position.X.ToString()+" , y: "+step.Position.Y.ToString() + "  " + step.MoveDirection.ToString());
+            }
+            return sb.ToString();
+        }
 
         private void Form1_Click(object sender, MouseEventArgs me)
         {
@@ -46,7 +58,7 @@ namespace MoveTheBoxUI
             var x = coordinates.X / 20;
             var y = 9-coordinates.Y / 20;
 
-            var position = Position.Create(x, y);
+            var position = new Position(x, y);
             boardEditor.UpdateBoxField(position);
             UpdateBoard();
         }

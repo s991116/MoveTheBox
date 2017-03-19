@@ -1,9 +1,5 @@
 ﻿using MoveTheBox;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoveTheBoxUI
 {
@@ -31,7 +27,7 @@ namespace MoveTheBoxUI
             var b = boxes.Find(x => x.X == position.X && x.Y == position.Y);
             if(b == null)
             {
-                board.AddBox(Box.Create(0, position));
+                board.AddBox(new Box(0, position));
             }
             else
             {
@@ -39,7 +35,7 @@ namespace MoveTheBoxUI
                 if(box.Kind < 5)
                 {
                     board.RemoveBox(box);
-                    board.AddBox(Box.Create(box.Kind + 1, position));
+                    board.AddBox(new Box(box.Kind + 1, position));
                 }
                 else
                 {
