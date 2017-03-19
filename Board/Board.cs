@@ -56,11 +56,6 @@ namespace MoveTheBox
             }
         }
 
-        public object Serialize()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Clear()
         {
             boxes.Clear();
@@ -77,7 +72,7 @@ namespace MoveTheBox
 
         public bool IsEmpty()
         {
-            return boxes.Count() == 0;
+            return boxes.Count(x => x.Exists) == 0;
         }
 
         public bool TryMoveLeft(Position p)
@@ -96,7 +91,7 @@ namespace MoveTheBox
             }
             else
             {
-                boxes.Where(x => x.Position.Equals(p)).First().MoveLeft();
+                boxes.Where(x => x.Position.Equals(p) && x.Exists).First().MoveLeft();
             }
 
             RemoveBoxesInARow();
@@ -123,7 +118,7 @@ namespace MoveTheBox
             }
             else
             {
-                boxes.Where(x => x.Position.Equals(p)).First().MoveRight();
+                boxes.Where(x => x.Position.Equals(p) && x.Exists).First().MoveRight();
             }
             RemoveBoxesInARow();
             while (GravityOnBoxes())
@@ -135,7 +130,7 @@ namespace MoveTheBox
 
         public bool TryMoveUp(Position p)
         {
-            if(boxes.Exists(x => x.Position.Equals(Position.CreateTop(p))))
+            if(boxes.Exists(x => x.Position.Equals(Position.CreateTop(p)) && x.Exists))
             {
                 var box1 = boxes.Where(x => x.Position.Equals(p)).First();
                 var box2 = boxes.Where(x => x.Position.Equals(Position.CreateTop(p))).First();
@@ -160,17 +155,17 @@ namespace MoveTheBox
 
         public Box GetBoxAtPosition(Position p)
         {
-            return boxes.Where(x => x.Position.Equals(p)).First();
+            return boxes.Where(x => x.Position.Equals(p) && x.Exists).First();
         }
 
         public bool IsBoxAtPosition(Position p)
         {
-            return boxes.Where(x => x.Position.Equals(p)).Count() > 0;
+            return boxes.Where(x => x.Position.Equals(p) && x.Exists).Count() > 0;
         }
 
         private bool GravityOnBoxes()
         {
-            var boxesToMove = boxes.Where(x => !IsBoxBeneath(x.Position));
+            var boxesToMove = boxes.Where(x => !IsBoxBeneath(x.Position) && x.Exists);
             var boxesMoved = false;
 
             while (boxesToMove.Count() > 0)
@@ -180,7 +175,7 @@ namespace MoveTheBox
                 {
                     box.MoveDown();
                 }
-                boxesToMove = boxes.Where(x => !IsBoxBeneath(x.Position));
+                boxesToMove = boxes.Where(x => !IsBoxBeneath(x.Position) && x.Exists);
             }
 
             return boxesMoved;
@@ -188,7 +183,7 @@ namespace MoveTheBox
 
         private bool IsBoxBeneath(Position p)
         {
-            return p.Y == 0 || boxes.Count(x => Position.CreateDown(p).Equals(x.Position)) > 0;
+            return p.Y == 0 || boxes.Count(x => Position.CreateDown(p).Equals(x.Position) && x.Exists) > 0;
         }
 
         private void RemoveBoxesInARow()
@@ -265,8 +260,11 @@ namespace MoveTheBox
 
         private void RemoveBoxes(List<Position> positions)
         {
-            boxes = boxes.Where(x => !positions.Contains(x.Position)).ToList();
+            var b = boxes.Where(x => positions.Contains(x.Position) && x.Exists).ToList();
+            foreach(var box in b)
+            {
+                box.Exists = false;
+            }
         }
-
     }
 }
