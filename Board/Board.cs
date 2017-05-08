@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoveTheBox
 {
@@ -42,7 +39,8 @@ namespace MoveTheBox
 
             foreach(var box in boxes)
             {
-                boxPositions.Add(new Position(box.Position.X, box.Position.Y));
+                if(box.Exists)
+                  boxPositions.Add(new Position(box.Position.X, box.Position.Y));
             }
 
             return boxPositions;
@@ -192,14 +190,17 @@ namespace MoveTheBox
 
             foreach(var box in boxes)
             {
-                var p = box.Position;
-                var k = box.Kind;
-                RemoveBoxInMiddleHorizontal(boxPositionsToRemove, p, k);
-                RemoveBoxToLeftHorizontal(boxPositionsToRemove, p, k);
-                RemoveBoxToRightHorizontal(boxPositionsToRemove, p, k);
-                RemoveBoxInMiddleVertical(boxPositionsToRemove, p, k);
-                RemoveBoxOnTopVertical(boxPositionsToRemove, p, k);
-                RemoveBoxOnBottomVertical(boxPositionsToRemove, p, k);
+                if (box.Exists)
+                {
+                    var p = box.Position;
+                    var k = box.Kind;
+                    RemoveBoxInMiddleHorizontal(boxPositionsToRemove, p, k);
+                    RemoveBoxToLeftHorizontal(boxPositionsToRemove, p, k);
+                    RemoveBoxToRightHorizontal(boxPositionsToRemove, p, k);
+                    RemoveBoxInMiddleVertical(boxPositionsToRemove, p, k);
+                    RemoveBoxOnTopVertical(boxPositionsToRemove, p, k);
+                    RemoveBoxOnBottomVertical(boxPositionsToRemove, p, k);
+                }
             }
 
             RemoveBoxes(boxPositionsToRemove);

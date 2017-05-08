@@ -35,7 +35,7 @@ namespace Solver
             {
                 var movesLeft = new List<Move>(oldMoves);
                 movesLeft.Add(Move.Create(position, Move.MoveDirectionEnum.Left));
-                var sLeft = FindSolutionIteration(movesLeft, testBoardLeft, boxNr, maxMoves - 1);
+                var sLeft = FindSolutionIteration(movesLeft, testBoardLeft, 0, maxMoves - 1);
                 if (sLeft.Found)
                 {
                     return sLeft;
@@ -47,7 +47,7 @@ namespace Solver
             {
                 var movesRight = new List<Move>(oldMoves);
                 movesRight.Add(Move.Create(position, Move.MoveDirectionEnum.Right));
-                var sRight = FindSolutionIteration(movesRight, testBoardRight, boxNr, maxMoves - 1);
+                var sRight = FindSolutionIteration(movesRight, testBoardRight, 0, maxMoves - 1);
                 if (sRight.Found)
                 {
                     return sRight;
@@ -60,7 +60,7 @@ namespace Solver
             {
                 var movesUp = new List<Move>(oldMoves);
                 movesUp.Add(Move.Create(position, Move.MoveDirectionEnum.Up));
-                var sUp = FindSolutionIteration(movesUp, testBoardUp, boxNr, maxMoves - 1);
+                var sUp = FindSolutionIteration(movesUp, testBoardUp, 0, maxMoves - 1);
                 if (sUp.Found)
                 {
                     return sUp;
