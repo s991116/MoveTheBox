@@ -1,0 +1,98 @@
+[
+  {
+    "Kind": 0,
+    "Position": {
+      "X": 7,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 0,
+    "Position": {
+      "X": 6,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 0,
+    "Position": {
+      "X": 5,
+      "Y": 3
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 1,
+    "Position": {
+      "X": 4,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 1,
+    "Position": {
+      "X": 5,
+      "Y": 1
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 1,
+    "Position": {
+      "X": 5,
+      "Y": 2
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 2,
+    "Position": {
+      "X": 5,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 2,
+    "Position": {
+      "X": 5,
+      "Y": 4
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 3,
+    "Position": {
+      "X": 5,
+      "Y": 5
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 2,
+    "Position": {
+      "X": 5,
+      "Y": 6
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 3,
+    "Position": {
+      "X": 4,
+      "Y": 1
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 3,
+    "Position": {
+      "X": 6,
+      "Y": 1
+    },
+    "Exists": true
+  }
+]

@@ -69,7 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="TestData\SemiAdvancedSetup - Copy.json">
+    <None Include="TestData\SeattleLevel3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SemiAdvancedSetup.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\AdvancedMoveTheBoxLevel.json">

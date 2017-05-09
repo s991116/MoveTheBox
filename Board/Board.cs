@@ -75,21 +75,29 @@ namespace MoveTheBox
 
         public bool TryMoveLeft(Position p)
         {
-            if (boxes.Exists(x => x.Position.Equals(Position.CreateLeft(p))))
-            {
-                var box1 = boxes.Where(x => x.Position.Equals(p)).First();
-                var box2 = boxes.Where(x => x.Position.Equals(Position.CreateLeft(p))).First();
-                box1.MoveLeft();
-                box2.MoveRight();
+            return TryMove(p, Position.CreateLeft(p));
+        }
 
-                if(box1.Kind == box2.Kind)
-                {
-                    return false;
-                }
-            }
-            else
+        public bool TryMove(Position position, Position newPosition)
+        {
+            var positionsLeft = GetCurrentBoxPositions();
+            if (positionsLeft.Exists(b => b.Equals(position)))
             {
-                boxes.Where(x => x.Position.Equals(p) && x.Exists).First().MoveLeft();
+                if (positionsLeft.Exists(b => b.Equals(newPosition)))
+                {
+                    var box1 = boxes.First(x => x.Position.Equals(position));
+                    var box2 = boxes.First(x => x.Position.Equals(newPosition));
+                    if (box1.Kind == box2.Kind)
+                    {
+                        return false;
+                    }
+                    box1.SetPosition(newPosition);
+                    box2.SetPosition(position);
+                }
+                else
+                {
+                    boxes.First(x => x.Position.Equals(position)).SetPosition(newPosition);
+                }
             }
 
             RemoveBoxesInARow();
@@ -101,64 +109,25 @@ namespace MoveTheBox
             return true;
         }
 
+
         public bool TryMoveRight(Position p)
         {
-            if(boxes.Exists(x => x.Position.Equals(Position.CreateRight(p))))
-            {
-                var box1 = boxes.Where(x => x.Position.Equals(p)).First();
-                var box2 = boxes.Where(x => x.Position.Equals(Position.CreateRight(p))).First();
-                if(box1.Kind == box2.Kind)
-                {
-                    return false;
-                }
-                box1.MoveRight();
-                box2.MoveLeft();
-            }
-            else
-            {
-                boxes.Where(x => x.Position.Equals(p) && x.Exists).First().MoveRight();
-            }
-            RemoveBoxesInARow();
-            while (GravityOnBoxes())
-            {
-                RemoveBoxesInARow();
-            }
-            return true;
+            return TryMove(p, Position.CreateRight(p));
         }
 
         public bool TryMoveUp(Position p)
         {
-            if(boxes.Exists(x => x.Position.Equals(Position.CreateTop(p)) && x.Exists))
-            {
-                var box1 = boxes.Where(x => x.Position.Equals(p)).First();
-                var box2 = boxes.Where(x => x.Position.Equals(Position.CreateTop(p))).First();
-                if(box1.Kind == box2.Kind)
-                {
-                    return false;
-                }
-                box1.MoveUp();
-                box2.MoveDown();
-            }
-            else
-            {
-                return false;
-            }
-            RemoveBoxesInARow();
-            while (GravityOnBoxes())
-            {
-                RemoveBoxesInARow();
-            }
-            return true;
+            return TryMove(p, Position.CreateTop(p));
         }
 
         public Box GetBoxAtPosition(Position p)
         {
-            return boxes.Where(x => x.Position.Equals(p) && x.Exists).First();
+            return boxes.First(x => x.Position.Equals(p) && x.Exists);
         }
 
         public bool IsBoxAtPosition(Position p)
         {
-            return boxes.Where(x => x.Position.Equals(p) && x.Exists).Count() > 0;
+            return boxes.Where(x => x.Position.Equals(p) && x.Exists).Any();
         }
 
         private bool GravityOnBoxes()
@@ -166,7 +135,7 @@ namespace MoveTheBox
             var boxesToMove = boxes.Where(x => !IsBoxBeneath(x.Position) && x.Exists);
             var boxesMoved = false;
 
-            while (boxesToMove.Count() > 0)
+            while (boxesToMove.Any())
             {
                 boxesMoved = true;
                 foreach (var box in boxesToMove)

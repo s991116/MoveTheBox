@@ -9,7 +9,10 @@
 
         public Box Clone()
         {
-            return new Box(Kind, Position.Clone());
+            return new Box(Kind, Position.Clone())
+            {
+                Exists = Exists
+            };
         }
 
         public Box(int kind, Position position)
@@ -53,6 +56,11 @@
             }
 
             return Position.Equals(item.Position) && Kind.Equals(item.Kind);
+        }
+
+        public void SetPosition(Position newPosition)
+        {
+            Position = newPosition;
         }
     }
 }

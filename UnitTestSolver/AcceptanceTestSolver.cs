@@ -40,6 +40,7 @@ namespace UnitTestSolver
             //Assert
             Assert.IsTrue(result.Found);
         }
+
         [TestMethod]
         public void FindSolution_MapSeattleLevel1_SolutionIsFound()
         {
@@ -56,6 +57,21 @@ namespace UnitTestSolver
             Assert.IsTrue(result.Found);
         }
 
+        [TestMethod]
+        public void FindSolution_MapSeattleLevel3_SolutionIsFound()
+        {
+            //Arrange
+            var board = new BoardTestBuilder()
+                .FromFile(@"TestData\SeattleLevel3.json")
+                .Build();
+            var solve = new Solve();
+
+            //Act
+            var result = solve.FindSolution(board, 2);
+
+            //Assert
+            Assert.IsTrue(result.Found);
+        }
 
     }
     class BoardTestBuilder
