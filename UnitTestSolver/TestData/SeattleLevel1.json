@@ -1,0 +1,106 @@
+﻿[
+  {
+    "Kind": 0,
+    "Position": {
+      "X": 0,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 0,
+    "Position": {
+      "X": 1,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 0,
+    "Position": {
+      "X": 2,
+      "Y": 1
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 0,
+    "Position": {
+      "X": 3,
+      "Y": 1
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 0,
+    "Position": {
+      "X": 1,
+      "Y": 2
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 0,
+    "Position": {
+      "X": 2,
+      "Y": 3
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 1,
+    "Position": {
+      "X": 2,
+      "Y": 2
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 1,
+    "Position": {
+      "X": 4,
+      "Y": 1
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 1,
+    "Position": {
+      "X": 4,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 1,
+    "Position": {
+      "X": 5,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 2,
+    "Position": {
+      "X": 3,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 2,
+    "Position": {
+      "X": 2,
+      "Y": 0
+    },
+    "Exists": true
+  },
+  {
+    "Kind": 2,
+    "Position": {
+      "X": 1,
+      "Y": 1
+    },
+    "Exists": true
+  }
+]
